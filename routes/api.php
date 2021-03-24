@@ -14,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['prefix' => 'app'], function () {
+    Route::post('/login', 'App\Http\Controllers\APIUserController@login');
+    Route::post('/register', 'App\Http\Controllers\APIUserController@register');
+    Route::get('/logout', 'App\Http\Controllers\APIUserController@logout')->middleware('auth:api');
+});
+
+// API VERIFICATION AND PASSWORD RESET AND FORGET
+Route::post('/password/email', 'App\Http\Controllers\API\ForgotPasswordController@sendResetLinkEmail');
+Route::post('/password/reset', 'App\Http\Controllers\API\ResetPasswordController@reset');
+Route::get('/email/resend', 'App\Http\Controllers\API\VerificationController@resend')->name('verification.resend');
+Route::get('/email/verify/{id}/{hash}', 'App\Http\Controllers\API\VerificationController@verify')->name('verification.verify');
+Route::get('/verified','App\Http\Controllers\API\VerificationController@getStatus')->name('verification.check');
+
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
