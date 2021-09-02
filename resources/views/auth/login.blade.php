@@ -1,63 +1,108 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Authentication | Login Portal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-@section('content')
-<br>
-<div class="container pt-500">
-    <br>
-        <div class="card login-card pt-100">
-            <div class="row no-gutters">
-                <div class="col-md-5">
-                <img src="{{ asset('images/bg/1.png') }}" alt="login" class="login-card-img">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <div class="brand-wrapper">
-                        <img src="{{ asset('images/logo/logo_only_full.png') }}" alt="logo" class="logo">
-                        &nbsp;
-                        <!-- <img src="{{ asset('images/logo/textlogo_full.png') }}" alt="logo" class="logo"> -->
-                        <!-- <span><h3>Nordis</h3></span> -->
-                        </div>
-                        <p class="login-card-description">Sign into your account</p>
-                        @if($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <h3>{{ $error }}</h3>
-                        @endforeach
-                    @endif
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="form-group">
-                                <label for="mobile" class="sr-only">Mobile</label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Email Address">
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="password" class="sr-only">Password</label>
-                                <input type="password" name="password" id="password" class="form-control" placeholder="***********">
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
-                        </form>
-                        <a href="{{ route('password.request') }}" class="forgot-password-link">Forgot password?</a>
-                        <p class="login-card-footer-text">Don't have an account? <a href="{{ route('register') }}" class="text-reset">Register here</a></p>
-                        <nav class="login-card-footer-nav">
-                            <a href="#!">Terms of use</a>|
-                            <a href="#!">Privacy policy</a>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-@endsection
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('portal/css/style.css') }}" >
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					{{-- <h2 class="heading-section">Login</h2> --}}
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+							<div class="text w-100">
+								<h2>Welcome to MonolithSPA</h2>
+								<p>Don't have an account?</p>
+								<a href="{{ route('register') }}" class="btn btn-white btn-outline-white">Sign Up</a>
+							</div>
+			      </div>
+						<div class="login-wrap p-4 p-lg-5">
+			      	<div class="d-flex">
+			      		<div class="w-100">
+			      			<h3 class="mb-4">Sign In</h3>
+			      		</div>
+								<div class="w-100">
+									<p class="social-media d-flex justify-content-end">
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+									</p>
+								</div>
+			      	</div>
+							<form action="{{ route('login') }}" class="signin-form">
+                                @csrf
+			      		<div class="form-group mb-3">
+			      			<label class="label" for="name">Username</label>
+			      			<input class="input100 form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" id="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                              <span class="focus-input100"></span>
+							{{-- <span class="symbol-input100">
+								<i class="fa fa-user" aria-hidden="true"></i>
+							</span> --}}
+							@if ($errors->has('email'))
+								<br>
+								<span class="invalid-feedback " role="alert">
+								<strong>{{ $errors->first('email') }}</strong>
+								</span>
+							@endif
+			      		</div>
+		            <div class="form-group mb-3">
+		            	<label class="label" for="password">Password</label>
+                        <input class="input100 form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" name="password" placeholder="{{ __('Password') }}" required autocomplete="current-password">
+                        <span class="focus-input100"></span>
+                        {{-- <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span> --}}
+                        @if ($errors->has('password'))
+                            <br>
+                            <span class="invalid-feedback" role="alert">                                        
+                            <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+		            </div>
+		            <div class="form-group">
+		            	<button type="submit" class="form-control btn btn-primary submit px-3">{{ __('Sign In') }}</button>
+		            </div>
+		            <div class="form-group d-md-flex">
+		            	<div class="w-50 text-left">
+			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+									  <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+									  <span class="checkmark"></span>
+										</label>
+									</div>
+                                    @if (Route::has('password.request'))
+									<div class="w-50 text-md-right">
+										<a href="{{ route('password.request') }}">Forgot Password?</a>
+									</div>
+                                    @endif
+		            </div>
+		          </form>
+		        </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	
+    <script src="{{ URL::asset('portal/js/jquery.min.js') }}"></script> 
+    <script src="{{ URL::asset('portal/js/popper.js') }}"></script>
+	<script src="{{ URL::asset('portal/js/bootstrap.min.js')}}"></script>
+    <script src="{{ URL::asset('portal/js/main.js') }}"></script>
+
+
+	</body>
+</html>
+

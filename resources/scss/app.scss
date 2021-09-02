@@ -1,5 +1,36 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Admin-lte
 @import '~admin-lte/dist/css/adminlte.css';
+
+// $fa-font-path:        "../webfonts";
+$fa-font-path:    "~@fortawesome/fontawesome-free/webfonts";
+
+//font-awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/_core.scss";
+@import "~@fortawesome/fontawesome-free/scss/_mixins.scss";
+@import "~@fortawesome/fontawesome-free/scss/_icons.scss";
+@import "~@fortawesome/fontawesome-free/scss/_variables.scss";
+@import "~@fortawesome/fontawesome-free/scss/_animated.scss";
+@import "~@fortawesome/fontawesome-free/scss/_bordered-pulled.scss";
+@import "~@fortawesome/fontawesome-free/scss/_fixed-width.scss";
+@import "~@fortawesome/fontawesome-free/scss/_larger.scss";
+@import "~@fortawesome/fontawesome-free/scss/_list.scss";
+@import "~@fortawesome/fontawesome-free/scss/_rotated-flipped.scss";
+@import "~@fortawesome/fontawesome-free/scss/_stacked.scss";
+@import "~@fortawesome/fontawesome-free/scss/_screen-reader.scss";
+
 
 body {
     background: #c9d6ff; /* fallback for old browsers */

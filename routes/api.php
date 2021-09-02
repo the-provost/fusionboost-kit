@@ -32,3 +32,8 @@ Route::get('/verified','App\Http\Controllers\API\VerificationController@getStatu
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Terms
+Route::middleware('auth:api')->post('/addTerms', 'App\Http\Controllers\API\TermController@store')->name('addTerms');
+Route::post('/getLatestTerms', 'App\Http\Controllers\API\TermController@getLatestTerms')->name('getLatestTerms');
+Route::post('/showLatestTerms', 'App\Http\Controllers\API\TermController@showLatestTerms')->name('showLatestTerms');

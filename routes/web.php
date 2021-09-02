@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('{vue_capture?}', function () {
     return view('home');
 })->where('vue_capture', '[\/\w\.-]*');
+
+
+Route::get('/terms', 'App\Http\Controllers\API\TermController@index')->name('terms');
+Route::get('/phoneTerms', 'App\Http\Controllers\API\TermController@getLatestTerms')->name('phoneTerms');
