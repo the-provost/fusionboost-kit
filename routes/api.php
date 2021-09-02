@@ -21,11 +21,11 @@ Route::group(['prefix' => 'app'], function () {
 });
 
 // API VERIFICATION AND PASSWORD RESET AND FORGET
-Route::post('/password/email', 'App\Http\Controllers\API\ForgotPasswordController@sendResetLinkEmail');
-Route::post('/password/reset', 'App\Http\Controllers\API\ResetPasswordController@reset');
-Route::get('/email/resend', 'App\Http\Controllers\API\VerificationController@resend')->name('verification.resend');
-Route::get('/email/verify/{id}/{hash}', 'App\Http\Controllers\API\VerificationController@verify')->name('verification.verify');
-Route::get('/verified','App\Http\Controllers\API\VerificationController@getStatus')->name('verification.check');
+// Route::post('/password/email', 'App\Http\Controllers\API\ForgotPasswordController@sendResetLinkEmail');
+// Route::post('/password/reset', 'App\Http\Controllers\API\ResetPasswordController@reset');
+// Route::get('/email/resend', 'App\Http\Controllers\API\VerificationController@resend')->name('verification.resend');
+// Route::get('/email/verify/{id}/{hash}', 'App\Http\Controllers\API\VerificationController@verify')->name('verification.verify');
+// Route::get('/verified','App\Http\Controllers\API\VerificationController@getStatus')->name('verification.check');
 
 
 

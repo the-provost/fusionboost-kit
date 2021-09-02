@@ -36,7 +36,7 @@
 									</p>
 								</div>
 			      	</div>
-							<form action="{{ route('register') }}" class="signin-form">
+							<form action="{{ route('register') }}" method="POST" class="signin-form">
                                 @csrf
 			      		<div class="form-group mb-3">
 
