@@ -17,13 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    dd(\Illuminate\Support\Facades\Auth::user());
-});
+// Route::get('/home', function () {
+//     dd(\Illuminate\Support\Facades\Auth::user());
+// });
 
-// Route::get('{vue_capture?}', function () {
-//     return view('home');
-// })->where('vue_capture', '[\/\w\.-]*');
+Route::get('/{vue_capture?}', function () {
+    return view('home');
+})->where('vue_capture', '[\/\w\.-]*');
 
 
 Route::get('/terms', 'App\Http\Controllers\API\TermController@index')->name('terms');

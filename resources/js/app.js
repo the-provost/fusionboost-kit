@@ -7,13 +7,15 @@
  require('./bootstrap');
 
  import Vue from 'vue'
+
+ var Chart = require('chart.js');
  
- import VueSplide from '@splidejs/vue-splide';
+//  import VueSplide from '@splidejs/vue-splide';
  
- Vue.use( VueSplide );
+//  Vue.use( VueSplide );
  
- import Gate from "./Gate";
- Vue.prototype.$gate = new Gate(window.user);
+//  import Gate from "./gate";
+//  Vue.prototype.$gate = new Gate(window.user);
  
  import router from './router.js'
  
@@ -30,22 +32,31 @@
  });
  window.toast = toast;
  
+//  import VueGoodTablePlugin from 'vue-good-table';
+ 
  // import the styles
- // import 'vue-good-table/dist/vue-good-table.css'
+//  import 'vue-good-table/dist/vue-good-table.css'
  
- // Vue.use(VueGoodTablePlugin);
+//  Vue.use(VueGoodTablePlugin);
  
- // import EditableCell from '@lucasbiguet/vue-editable-cell'
+//  import EditableCell from '@lucasbiguet/vue-editable-cell'
  
- // Vue.use(EditableCell)
+//  Vue.use(EditableCell)
  
  
  import vSelect from 'vue-select'
  Vue.component('v-select',vSelect)
  import 'vue-select/dist/vue-select.css';
+
  
+//  import { saveAs } from 'file-saver';
+//  var FileSaver = require('file-saver');
  
- import { VueEditor, Quill } from "vue2-editor";
+//  import { VueEditor, Quill } from "vue2-editor";
+
+import { ToggleButton } from 'vue-js-toggle-button'
+ 
+Vue.component('ToggleButton', ToggleButton)
  
  
  import { Form, HasError, AlertError } from 'vform'
@@ -59,12 +70,12 @@
    return moment(created).format('DD MM YYYY');
  });
  
- 
+ if(document.querySelector("meta[name='user-id']") != null){
  Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
  Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").getAttribute('content');
- Vue.prototype.$fname = document.querySelector("meta[name='user-fname']").getAttribute('content');
- Vue.prototype.$lname = document.querySelector("meta[name='user-lname']").getAttribute('content');
+ Vue.prototype.$name = document.querySelector("meta[name='user-name']").getAttribute('content');
  Vue.prototype.$phone = document.querySelector("meta[name='user-phone']").getAttribute('content');
+ }
  //Vue.prototype.$verified = document.querySelector("meta[name='user-verified']").getAttribute('content');
  
  import VueProgressBar from 'vue-progressbar'
@@ -83,7 +94,7 @@
  })
  
  
- import { createDuration } from '@fullcalendar/core';
+//  import { createDuration } from '@fullcalendar/core';
  import { utils } from 'sortablejs';
  
  const options = {
@@ -100,17 +111,17 @@
      inverse: false
    }
  
- Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
- Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").getAttribute('content');
- Vue.prototype.$fname = document.querySelector("meta[name='user-fname']").getAttribute('content');
- Vue.prototype.$lname = document.querySelector("meta[name='user-lname']").getAttribute('content');
- Vue.prototype.$phone = document.querySelector("meta[name='user-phone']").getAttribute('content');
+ 
  // Vue.prototype.$verified = document.querySelector("meta[name='user-verified']").getAttribute('content');
  
  // to have access to the form and other variables everywhere
  window.Form=Form;
  
  window.Vue = require('vue');
+ 
+ 
+ // window.google = google;
+ 
  
  var Promise = require('es6-promise').Promise;
  require('es6-promise').polyfill();
@@ -127,7 +138,7 @@
  // const files = require.context('./', true, /\.vue$/i)
  // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
  
-//  Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+ Vue.component('example-component', require('./components/ExampleComponent.vue').default);
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to
@@ -137,8 +148,6 @@
  
  const app = new Vue({
      el: '#app',
-     saveAs,
-     VueSplide,
+     Chart,
      router
  });
- 
