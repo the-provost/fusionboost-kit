@@ -15,7 +15,7 @@
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
 </head>
 <!--
@@ -28,7 +28,7 @@
   * sidebar-mini
 -->
 <body id="body" class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed shadow-none layout-footer-fixed">
-<div class="wrapper" id="app">
+<div class="wrapper">
   
 
   <!-- Navbar -->
@@ -53,12 +53,13 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-<vue-progress-bar></vue-progress-bar>
-
-<router-view>
-        {{-- vue components here --}}
-</router-view>
+  <div id="app">
+  <app-component></app-component>
+  </div>
+  
   <!-- /.content-wrapper -->
+</div>
+  
 
 
 @auth
@@ -73,9 +74,9 @@
   <img src="images/icons/greymorelogosmall.png" alt="Greymore Logo" class="brand-image img-circle"
   style="opacity: 1">
 {{-- <span><img src="images/icons/greypass_small.png" alt="Greypass Logo" class="brand-image"style="opacity: 1"></span> --}}
-    <strong>&nbsp|&nbsp By <a href="http://www.greymore.tech" target="_blank"> Greymore Tech</a></strong>
+    <strong>&nbsp|&nbsp By <a href="http://www.greymore.tech" target="_blank"> Company Name here</a></strong>
 <div class="float-right d-none d-sm-inline">
-        Vestibulum. Accommodare. Vincere.
+        Company Tagline here.
         </div>
 </footer>
 
@@ -91,7 +92,8 @@
 <!-- REQUIRED SCRIPTS -->
 
 {{-- app.js  add all js there --}}
-<script src="{{ asset('js/app.js') }}" defer></script>
+<!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+  @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 <script src="https://kit.fontawesome.com/ad66c9c2be.js" crossorigin="anonymous"></script>
 <script>
 
