@@ -34,29 +34,97 @@ To get started with this scaffold, follow these steps:
    ```bash
    bash setup.sh
    ```
+   The `setup.sh` script automates the process of initializing a new Git repository, adding all files to the repository, and pushing them to a new remote repository. Here's a more detailed explanation of each step in the script:
 
-   **Explanation of `setup.sh` Process**:
+1. **Remove Existing Git Repository**: 
+   ```bash
+   rm -rf .git
+   ```
+   This command removes the existing `.git` directory, which contains the Git history and configuration of the current repository. It effectively "unlinks" the current repository from Git.
 
-   - **Remove Existing Git Repository**: Removes the existing `.git` directory to start fresh.
-   - **Remove `.gitattributes` File**: Removes the `.gitattributes` file if it exists.
-   - **Initialize New Git Repository**: Initializes a new Git repository in the current directory.
-   - **Add All Files to Staging Area**: Adds all files in the current directory to the staging area.
-   - **Prompt for Personal Access Token (PAT)**: Prompts the user to enter their Personal Access Token (PAT).
-   - **Prompt for New Repository URL**: Prompts the user to enter the URL of the new remote repository.
-   - **Construct Repository URL with PAT**: Constructs the repository URL with the provided Personal Access Token.
-   - **Set Remote Origin**: Sets the remote origin of the Git repository to the new repository URL.
-   - **Prompt for Primary Branch Name**: Prompts the user to enter the name of the primary branch for the new repository.
-   - **Rename Current Branch**: Renames the current branch to the primary branch name specified by the user.
-   - **Prompt for Commit Message**: Prompts the user to enter a commit message for the initial commit.
-   - **Commit Changes**: Commits the changes in the staging area with the provided commit message.
-   - **Push Changes to Remote Repository**: Pushes the committed changes from the local repository to the new remote repository.
+2. **Remove `.gitattributes` File**: 
+   ```bash
+   rm -rf .gitattributes
+   ```
+   This command removes the `.gitattributes` file, if it exists. The `.gitattributes` file specifies attributes for pathnames in the repository, such as handling of line endings and binary files.
+
+3. **Initialize New Git Repository**: 
+   ```bash
+   git init
+   ```
+   This command initializes a new Git repository in the current directory. It creates a new `.git` directory and sets up the necessary Git configuration files to start tracking changes.
+
+4. **Add All Files to Staging Area**: 
+   ```bash
+   git add .
+   ```
+   This command adds all files in the current directory to the staging area, preparing them to be committed to the Git repository. It stages both new and modified files.
+
+5. **Prompt for Personal Access Token (PAT)**:
+   ```bash
+   read -p "Enter Personal Access Token:" token
+   ```
+   This command prompts the user to enter their Personal Access Token (PAT). The PAT is used for authentication when pushing changes to the new remote repository.
+
+6. **Prompt for New Repository URL**:
+   ```bash
+   read -p "Enter Git Repo of new project:" url
+   ```
+   This command prompts the user to enter the URL of the new remote repository where they want to push the changes.
+
+7. **Construct Repository URL with PAT**:
+   ```bash
+   domain="${url#https://}"
+   repo="https://${token}@${domain}"
+   ```
+   These commands extract the domain from the repository URL and construct a new repository URL with the provided Personal Access Token for authentication.
+
+8. **Set Remote Origin**:
+   ```bash
+   git remote add origin "$repo"
+   ```
+   This command sets the remote origin of the Git repository to the new repository URL. It establishes the connection between the local repository and the remote repository.
+
+9. **Prompt for Primary Branch Name**:
+   ```bash
+   read -p "Primary branch name (main/master):" branch
+   ```
+   This command prompts the user to enter the name of the primary branch for the new repository (e.g., `main` or `master`).
+
+10. **Rename Current Branch**:
+    ```bash
+    git branch -M $branch
+    ```
+    This command renames the current branch to the primary branch name specified by the user. It ensures that the primary branch is correctly named in the local repository.
+
+11. **Prompt for Commit Message**:
+    ```bash
+    read -p "Enter commit message:" commitmessage
+    ```
+    This command prompts the user to enter a commit message for the initial commit that will be pushed to the new remote repository.
+
+12. **Commit Changes**:
+    ```bash
+    git commit -m "$commitmessage"
+    ```
+    This command commits the changes in the staging area with the provided commit message. It creates a new commit in the local repository.
+
+13. **Push Changes to Remote Repository**:
+    ```bash
+    git push -u origin $branch
+    ```
+    This command pushes the committed changes from the local repository to the new remote repository. It sets the upstream branch and pushes changes to the specified branch.
+
+By automating these steps, the `setup.sh` script simplifies the process of cloning the repository, initializing a new Git repository, and pushing the changes to a new remote repository, making it easier for users to get started with the project.
 
 4. Once the setup is complete, you can start making changes to the project and push them to the new remote repository.
 
+
+
 ## License
 
-This project is open-sourced software licensed under the [MIT license](LICENSE).
+This project is open-sourced software licensed under the [MIT license](LICENSE). AS well as the licences under which the components/plugins used in this project are released.
 
 ---
 
-Feel free to customize the instructions further based on your project's specific details and requirements!
+Feel free to customize the instructions further based on your project's specific details and requirements! If you have any queries, please raise an issue or feel free to contribute to the codebase.
