@@ -1,5 +1,5 @@
 <template>
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light border-none border-bottom-0 shadow-none">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom-0 text-sm">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -11,7 +11,7 @@
         </a>
       </li>
     </ul>
-
+    
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Login and Register Links -->
@@ -36,20 +36,12 @@
           <i class="fas fa-user-tie"></i>&nbsp; {{ user.first_name }}<span class="caret"></span>
         </a>
         <div 
-          class="dropdown-menu dropdown-menu-end" 
+          class="dropdown-menu show dropdown-menu-end" style="right: 0; left: auto;" 
           aria-labelledby="navbarDropdown" 
           v-if="dropdownOpen"
         >
-          <a class="dropdown-item" @click.prevent="onClickToggleDark">
-            Theme
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-secondary active">
-                <input type="checkbox" name="dark" id="dark-mode" autocomplete="off"> Dark
-              </label>
-              <label class="btn btn-info">
-                <input type="radio" name="dark" id="light-mode" autocomplete="off" checked> Light
-              </label>
-            </div>
+          <a class="dropdown-item" @click.prevent="toggleDarkMode">
+            Switch Display Mode
           </a>
           <a class="dropdown-item" href="/logout" @click.prevent="logout">
             <i class="fas fa-lock"></i> Logout
@@ -61,6 +53,9 @@
 </template>
 
 <script>
+import { computed, ref, onMounted } from 'vue';
+import { toggleDarkMode } from '../../darkModePlugin';
+
 export default {
   data() {
     return {
@@ -78,24 +73,33 @@ export default {
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen; // Toggle the dropdown state
     },
-    onClickToggleDark() {
-      // Implement your dark mode toggling logic here
-      var element = document.body;
-      var name = "dark-mode";
-      var arr = element.className.split(" ");
-      if (arr.indexOf(name) === -1) {
-        element.className += " " + name;
-      }
+    toggleDarkMode(){
+       // Toggle the dark mode globally
+       toggleDarkMode();
     },
-    onClickToggleWhite() {
+    onClickToggleLight() {
       // Implement your light mode toggling logic here
-      var element = document.body;
-      element.className = element.className.replace(/\bdark-mode\b/g, "");
+      toggleDarkMode(); // Toggling back to light mode using the same function
     },
     logout() {
       // Implement your logout logic here
       document.getElementById('logout-form').submit();
+    },
+    closeDropdownOnClickOutside(event) {
+      // Check if the clicked element is inside the dropdown
+      if (!this.$el.contains(event.target)) {
+        // Clicked outside the dropdown, close it
+        this.dropdownOpen = false;
+      }
     }
+  },
+  mounted() {
+    // Add click event listener to detect clicks outside the dropdown
+    window.addEventListener('click', this.closeDropdownOnClickOutside);
+  },
+  beforeUnmount() {
+    // Remove click event listener when component is unmounted
+    window.removeEventListener('click', this.closeDropdownOnClickOutside);
   }
 };
 </script>

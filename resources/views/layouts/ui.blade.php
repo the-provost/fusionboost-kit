@@ -29,8 +29,8 @@
   * sidebar-collapse
   * sidebar-mini
 -->
-<body class="dark-mode layout-navbar-fixed sidebar-collapse footer-fixed layout-fixed sidebar-mini-xs sidebar-mini-md sidebar-mini accent-primary text-sm layout-footer-fixed footer-fixed" style="height: auto;">
-<div class="wrapper" id="app">
+<body class="sidebar-collapse sidebar-mini layout-fixed layout-navbar-fixed sidebar-mini-md sidebar-mini-xs layout-footer-fixed text-sm" style="height: auto;">
+<div class="wrapper"id="app">
 
 <div class="preloader flex-column justify-content-center align-items-center">
 <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
