@@ -28,10 +28,15 @@ app.component(AlertError.name, AlertError); // Register AlertError component glo
 //common ui components
 import NavbarComponent from './components/ui/NavbarComponent.vue';
 import SidebarComponent from './components/ui/SidebarComponent.vue';
+import FooterComponent from './components/ui/FooterComponent.vue';
+import ControlSidebarComponent from './components/ui/ControlSidebarComponent.vue';
 
 // Register global components
 app.component("navbar-component", NavbarComponent); // Register NavbarComponent globally
 app.component("sidebar-component", SidebarComponent); // Register SidebarComponent globally
+app.component("footer-component", FooterComponent); // Register FooterComponent globally
+app.component("control-sidebar-component", ControlSidebarComponent); // Register ControlSidebarComponent globally
+
 
 
 // Use Vue Router if you're using it

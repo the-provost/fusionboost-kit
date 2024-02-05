@@ -40,8 +40,8 @@
           aria-labelledby="navbarDropdown" 
           v-if="dropdownOpen"
         >
-          <a class="dropdown-item" @click.prevent="toggleDarkMode">
-            Switch Display Mode
+          <a class="dropdown-item">
+            <button class="btn btn-secondary" @click.prevent="toggleDarkMode">Switch Display Mode</button>
           </a>
           <a class="dropdown-item" href="/logout" @click.prevent="logout">
             <i class="fas fa-lock"></i> Logout

@@ -645,42 +645,32 @@ import { useDarkMode } from '../../darkModePlugin';
 export default {
   setup() {
     const darkMode = useDarkMode();
-
+    
     // Local ref for userAvatar and userName
     const userAvatar = ref("images/avatars/svg/001-man.svg");
     const userName = ref("John Doe");
-
+    
     // Watch for changes in the global dark mode variable
     watch(darkMode, (newValue) => {
       // Handle changes in dark mode
+      console.log(newValue);
     });
-
+    
     // Computed property for sidebar classes based on dark mode state
     const sidebarClasses = computed(() => ({
       'main-sidebar': true,
       'shadow-none': true,
-      'sidebar-dark-primary': darkMode.value,
-      'sidebar-light-primary': !darkMode.value,
+      'sidebar-dark-primary': false,
+      'sidebar-light-primary': true,
       'elevation-4': true,
       'border-none': true,
       'border-bottom-0': true,
     }));
-
-    // Methods to toggle dark and white mode
-    const toggleDarkMode = () => {
-      darkMode.value = true;
-    };
-
-    const toggleWhiteMode = () => {
-      darkMode.value = false;
-    };
-
+    
     return {
+        sidebarClasses,
       userAvatar,
-      userName,
-      sidebarClasses,
-      toggleDarkMode,
-      toggleWhiteMode,
+      userName
     };
   },
 };
