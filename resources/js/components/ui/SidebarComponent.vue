@@ -2,7 +2,7 @@
     <aside :class="sidebarClasses">
       <!-- Brand Logo -->
       <a href="/home" class="brand-link text-black navbar-white logo shadow-none border-none">
-        <span class="logo-mini"><b>SP</b>A</span>
+        <span class="logo-mini"><b>Admin</b>LTE</span>
         <span class="logo-lg"><b>FusionBoost</b></span>
       </a>
       <div class="sidebar">
@@ -21,13 +21,13 @@
           <ul class="nav nav-pills nav-flat nav-child-indent nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class -->
             <li class="nav-item">
-            <a href="/home" class="nav-link">
+             <router-link to="/home" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
                 <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
-            </a>
+             </router-link>
             
           </li>
           <li class="nav-item">
@@ -639,39 +639,43 @@
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        userAvatar: "images/avatars/svg/001-man.svg", // Example, replace with dynamic data
-        userName: "John Doe", // Example, replace with dynamic data
-        darkMode: true
-      };
-    },
-    computed: {
-      sidebarClasses() {
-        return {
-          'main-sidebar': true,
-          'shadow-none': true,
-          'sidebar-dark-primary': this.darkMode,
-          'sidebar-light-primary': !this.darkMode,
-          'elevation-4': true,
-          'border-none': true,
-          'border-bottom-0': true
-        };
-      }
-    },
-    methods: {
-      toggleDarkMode() {
-        this.darkMode = true;
-      },
-      toggleWhiteMode() {
-        this.darkMode = false;
-      }
-    }
-  };
-  </script>
-  
-  <style scoped>
-  /* Add scoped styles if necessary */
-  </style>
+import { computed, watch, ref } from 'vue';
+import { useDarkMode } from '../../darkModePlugin';
+
+export default {
+  setup() {
+    const darkMode = useDarkMode();
+    
+    // Local ref for userAvatar and userName
+    const userAvatar = ref("images/avatars/svg/001-man.svg");
+    const userName = ref("John Doe");
+    
+    // Watch for changes in the global dark mode variable
+    watch(darkMode, (newValue) => {
+      // Handle changes in dark mode
+      console.log(newValue);
+    });
+    
+    // Computed property for sidebar classes based on dark mode state
+    const sidebarClasses = computed(() => ({
+      'main-sidebar': true,
+      'shadow-none': true,
+      'sidebar-dark-primary': false,
+      'sidebar-light-primary': true,
+      'elevation-4': true,
+      'border-none': true,
+      'border-bottom-0': true,
+    }));
+    
+    return {
+        sidebarClasses,
+      userAvatar,
+      userName
+    };
+  },
+};
+
+
+</script>
+
   

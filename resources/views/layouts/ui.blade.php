@@ -29,52 +29,16 @@
   * sidebar-collapse
   * sidebar-mini
 -->
-<body class="dark-mode layout-navbar-fixed sidebar-collapse footer-fixed layout-fixed sidebar-mini-xs sidebar-mini-md sidebar-mini accent-primary text-sm layout-footer-fixed footer-fixed" style="height: auto;">
-<div class="wrapper" id="app">
-
-<div class="preloader flex-column justify-content-center align-items-center">
-<img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-</div>
-  
-
-  <!-- Navbar -->
-  <!-- @include( 'layouts.navbar' ) -->
-  <!-- /.navbar -->
-
- 
-
-    <!-- Sidebar -->
-    <!-- @include( 'layouts.sidebar' ) -->
-    <!-- /.sidebar -->
+<body class="sidebar-collapse sidebar-mini layout-fixed layout-navbar-fixed sidebar-mini-md sidebar-mini-xs layout-footer-fixed text-sm" id="app" style="height: auto;">
   
   
-  <!-- Content Wrapper. Contains page content -->
+  
+  <!-- Vue App-->
  
   <app-component></app-component>
-  </div>
   
-  <!-- /.content-wrapper -->
 
-
-  <!-- Main Footer -->
-  <footer class="main-footer shadow-none border-none border-top-0 accent-navy">
-  <img src="images/icons/greymorelogosmall.png" alt="Greymore Logo" class="brand-image img-circle"
-  style="opacity: 1">
-{{-- <span><img src="images/icons/greypass_small.png" alt="Greypass Logo" class="brand-image"style="opacity: 1"></span> --}}
-    <strong>&nbsp|&nbsp By <a href="http://www.greymore.tech" target="_blank"> Company Name here</a></strong>
-<div class="float-right d-none d-sm-inline">
-        Company Tagline here.
-        </div>
-</footer>
-
- <!-- Control Sidebar -->
- <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    @include( 'layouts.controlsidebar' )
-  </aside>
-  <!-- /.control-sidebar -->
-
-<!-- ./wrapper -->
+<!-- ./Vue App -->
 
 <!-- REQUIRED SCRIPTS -->
 
@@ -84,7 +48,7 @@
 </script>
 @endauth
 
-{{-- app.js  add all js there --}}
+<!-- app.js  add all js there -->
 <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
 <script src="https://kit.fontawesome.com/ad66c9c2be.js" crossorigin="anonymous"></script>

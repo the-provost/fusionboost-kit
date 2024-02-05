@@ -10,6 +10,7 @@ import '../scss/app.scss'
 
 // Import your Vue components
 import AppComponent from './components/App.vue';
+import { provideDarkMode } from './darkModePlugin';
 
 import { Form, HasError, AlertError } from 'vform'; // Assuming you're still using these components
 import vSelect from "vue-select";
@@ -17,8 +18,8 @@ import swal from 'sweetalert2'; // Import SweetAlert2 for notifications
 import moment from 'moment'; // Import Moment.js for date formatting
 import 'vue-select/dist/vue-select.css';
 
-// Create Vue app instance
-const app = createApp(AppComponent);
+
+const app = createApp(AppComponent).provide('darkMode', provideDarkMode);
 
 // Register global components
 app.component("v-select", vSelect); // Register vSelect component globally
@@ -27,10 +28,16 @@ app.component(AlertError.name, AlertError); // Register AlertError component glo
 //common ui components
 import NavbarComponent from './components/ui/NavbarComponent.vue';
 import SidebarComponent from './components/ui/SidebarComponent.vue';
+import FooterComponent from './components/ui/FooterComponent.vue';
+import ControlSidebarComponent from './components/ui/ControlSidebarComponent.vue';
 
 // Register global components
 app.component("navbar-component", NavbarComponent); // Register NavbarComponent globally
 app.component("sidebar-component", SidebarComponent); // Register SidebarComponent globally
+app.component("footer-component", FooterComponent); // Register FooterComponent globally
+app.component("control-sidebar-component", ControlSidebarComponent); // Register ControlSidebarComponent globally
+
+
 
 // Use Vue Router if you're using it
 app.use(router);

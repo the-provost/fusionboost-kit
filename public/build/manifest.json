@@ -1,9 +1,10 @@
 {
   "resources/js/app.js": {
     "css": [
-      "assets/app-RnEpZqUB.css"
+      "assets/app-clYRP6Lw.css",
+      "assets/app-YG5PHuOc.css"
     ],
-    "file": "assets/app-1XhrdriT.js",
+    "file": "assets/app-8E0cRsId.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
