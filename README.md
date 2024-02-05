@@ -1,5 +1,8 @@
 # FusionBoost Kit for Laravel+Vue Apps
 
+<p align="center"><a target="_blank"><img src="https://raw.githubusercontent.com/jesiljose-bridge/laravel-vue-scaffold/main/fusionboost_logo.png" width="400" alt="FusionBoost Logo"></a></p>
+
+
 This project is a scaffold for developers who want to build web applications using Laravel, Vue 3, Vite, Bootstrap, Laravel Fortify, and Laravel Passport. It includes AdminLTE dashboard and AdminLTE Auth templates for easy integration.
 
 ## Features
