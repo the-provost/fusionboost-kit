@@ -6,9 +6,11 @@ import router from './router.js'; // Make sure you have your router defined in r
 
 // Import global styles and configurations
 import './bootstrap.js';
+import '../scss/app.scss'
 
 // Import your Vue components
 import AppComponent from './components/App.vue';
+
 import { Form, HasError, AlertError } from 'vform'; // Assuming you're still using these components
 import vSelect from "vue-select";
 import swal from 'sweetalert2'; // Import SweetAlert2 for notifications
@@ -22,6 +24,13 @@ const app = createApp(AppComponent);
 app.component("v-select", vSelect); // Register vSelect component globally
 app.component(HasError.name, HasError); // Register HasError component globally
 app.component(AlertError.name, AlertError); // Register AlertError component globally
+//common ui components
+import NavbarComponent from './components/ui/NavbarComponent.vue';
+import SidebarComponent from './components/ui/SidebarComponent.vue';
+
+// Register global components
+app.component("navbar-component", NavbarComponent); // Register NavbarComponent globally
+app.component("sidebar-component", SidebarComponent); // Register SidebarComponent globally
 
 // Use Vue Router if you're using it
 app.use(router);

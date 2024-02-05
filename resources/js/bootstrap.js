@@ -1,64 +1,48 @@
-
+// Import lodash and attach it to the window object
 import _ from 'lodash';
 window._ = _;
 
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-import 'bootstrap';
-import 'admin-lte';
-
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-} catch (e) {}
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
+// Import axios and attach it to the window object
 import axios from 'axios';
 window.axios = axios;
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// Import Popper.js for Bootstrap
+import Popper from 'popper.js';
+window.Popper = Popper;
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
+// Import Bootstrap styles
+import 'bootstrap/dist/css/bootstrap.css';
 
- /*import Echo from 'laravel-echo';
+// Import Bootstrap JS components
+import "bootstrap/dist/js/bootstrap.js";
 
-//  window.Pusher = require('pusher-js');
+// Import AdminLTE styles and scripts
+import 'admin-lte';
 
- import Pusher from 'pusher-js';
+// Import jQuery and attach it to the window object
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
 
-// import Pusher from 'pusher-js';
-// window.Pusher = Pusher;
- 
- window.pusher = new Pusher('CardamomAuction');
+// Environment variables for Pusher (if needed)
+const pusherKey = import.meta.env.VITE_PUSHER_APP_KEY;
+const pusherCluster = import.meta.env.VITE_PUSHER_APP_CLUSTER;
 
-
-//  window.Echo = new Echo({
-//      broadcaster: 'pusher',
-//      key: process.env.MIX_PUSHER_APP_KEY,
-//      cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//      forceTLS: false,
-//      wsHost: window.location.hostname,
-//      wsPort: 6001,
-//      wssPort: 6001,
-//      disableStats: true,
-//      headers: {
-//        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//         }
-//  });
-
+// If you need to use Echo for real-time events
+/*
+import Echo from 'laravel-echo';
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: pusherKey,
+    cluster: pusherCluster,
+    forceTLS: false,
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    wssPort: 6001,
+    disableStats: true,
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 */
 
-key: import.meta.env.VITE_PUSHER_APP_KEY;
-cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER;

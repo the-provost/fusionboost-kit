@@ -1,48 +1,31 @@
- <!-- Main Sidebar Container -->
- <aside class="main-sidebar shadow-none sidebar-dark-primary elevation-4 border-none border-bottom-0">
-    <!-- Brand Logo -->
-    <a href="/home" class="brand-link text-black navbar-white logo shadow-none border-none">
-      {{-- <img src="images/icons/greymorelogo.png" alt="Small Logo Logo" class="brand-image img-circle" style="opacity: 100"> --}}
-      <span class="logo-mini"><b>SP</b>A</span>
-      <span class="logo-lg"><b>FusionBoost</b></span>
-   
-      {{-- <span class="brand-text font-weight-light"><img src="images/icons/greypass_small.png" alt="Oraganization Text Logo" class="brand-image"
-        style="opacity: 1"></span> --}}
-    </a>
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="images/avatars/svg/001-man.svg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="/home" class="d-block">{{ Auth::user()->first_name }} {{Auth::user()->last_name }}</a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <!-- <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
+<template>
+    <aside :class="sidebarClasses">
+      <!-- Brand Logo -->
+      <a href="/home" class="brand-link text-black navbar-white logo shadow-none border-none">
+        <span class="logo-mini"><b>SP</b>A</span>
+        <span class="logo-lg"><b>FusionBoost</b></span>
+      </a>
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img :src="userAvatar" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="/home" class="d-block">{{ userName }}</a>
           </div>
         </div>
-      </div> -->
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-flat nav-child-indent nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="/home" class="nav-link active">
+  
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-flat nav-child-indent nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class -->
+            <li class="nav-item">
+            <a href="/home" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                {{-- <i class="right fas fa-angle-left"></i> --}}
+                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
             
@@ -57,7 +40,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/page" class="nav-link">
+            <router-link to="/pageextra" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Layout Options
@@ -649,9 +632,46 @@
               <p>Informational</p>
             </a>
           </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
+          </ul>
+        </nav>
+      </div>
     </aside>
-    
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        userAvatar: "images/avatars/svg/001-man.svg", // Example, replace with dynamic data
+        userName: "John Doe", // Example, replace with dynamic data
+        darkMode: true
+      };
+    },
+    computed: {
+      sidebarClasses() {
+        return {
+          'main-sidebar': true,
+          'shadow-none': true,
+          'sidebar-dark-primary': this.darkMode,
+          'sidebar-light-primary': !this.darkMode,
+          'elevation-4': true,
+          'border-none': true,
+          'border-bottom-0': true
+        };
+      }
+    },
+    methods: {
+      toggleDarkMode() {
+        this.darkMode = true;
+      },
+      toggleWhiteMode() {
+        this.darkMode = false;
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  /* Add scoped styles if necessary */
+  </style>
+  

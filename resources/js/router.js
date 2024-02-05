@@ -6,6 +6,8 @@ import ExampleComponent from './components/ExampleComponent.vue';
 import EmptyPage from './components/EmptyPage.vue';
 import Home from './components/Home.vue';
 // Import any other components or views
+import NavbarComponent from './components/ui/NavbarComponent.vue';
+import SidebarComponent from './components/ui/SidebarComponent.vue';
 
 // Create the router
 const router = createRouter({

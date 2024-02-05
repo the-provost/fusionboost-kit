@@ -27,7 +27,7 @@
           
         <div class="card">
           <p>
-            You're in the dashboard of a ready-to-use Laravel Vue Monolith SPA built for Greymore Tech. Now make something awesome.
+            You're in the dashboard of a ready-to-use Laravel Vue Monolith SPA Now make something awesome.
           </p>
         </div>
          
