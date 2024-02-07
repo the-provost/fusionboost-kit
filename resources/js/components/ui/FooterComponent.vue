@@ -11,5 +11,15 @@
   </footer>
 </template>
   <script>
-  const footerImagePath = '/images/AdminLTELogo.png';
+  import { computed, watch, ref } from 'vue';
+  export default {
+  setup() {
+    // Local ref for userAvatar and userName
+    const footerImagePath = ref("images/AdminLTELogo.png");
+    
+    return {
+      footerImagePath
+    };
+  },
+};
   </script>

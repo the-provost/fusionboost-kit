@@ -17,6 +17,7 @@ import vSelect from "vue-select";
 import swal from 'sweetalert2'; // Import SweetAlert2 for notifications
 import moment from 'moment'; // Import Moment.js for date formatting
 import 'vue-select/dist/vue-select.css';
+import axiosPlugin from './axios';
 
 
 const app = createApp(AppComponent).provide('darkMode', provideDarkMode);
@@ -37,6 +38,9 @@ app.component("sidebar-component", SidebarComponent); // Register SidebarCompone
 app.component("footer-component", FooterComponent); // Register FooterComponent globally
 app.component("control-sidebar-component", ControlSidebarComponent); // Register ControlSidebarComponent globally
 
+
+// Use the Axios plugin
+app.use(axiosPlugin);
 
 
 // Use Vue Router if you're using it

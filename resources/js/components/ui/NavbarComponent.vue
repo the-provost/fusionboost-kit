@@ -43,7 +43,7 @@
           <a class="dropdown-item">
             <button class="btn btn-secondary" @click.prevent="toggleDarkMode">Switch Display Mode</button>
           </a>
-          <a class="dropdown-item" href="/logout" @click.prevent="logout">
+          <a class="dropdown-item" @click="logout">
             <i class="fas fa-lock"></i> Logout
           </a>
         </div>
@@ -54,6 +54,7 @@
 
 <script>
 import { computed, ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { toggleDarkMode } from '../../darkModePlugin';
 
 export default {
@@ -70,6 +71,19 @@ export default {
     }
   },
   methods: {
+    async logout() {
+      console.log('Logging out...');
+      try {
+        // Make a POST request to the logout endpoint
+        await axios.post('/logout');
+        // If successful, you can redirect the user to the login page or do any other action
+        // For example, you can redirect the user to the home page
+        window.location.href = '/login';
+      } catch (error) {
+        // Handle any errors, such as network errors or server errors
+        console.error('Logout failed:', error);
+      }
+    },
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen; // Toggle the dropdown state
     },
@@ -80,10 +94,6 @@ export default {
     onClickToggleLight() {
       // Implement your light mode toggling logic here
       toggleDarkMode(); // Toggling back to light mode using the same function
-    },
-    logout() {
-      // Implement your logout logic here
-      document.getElementById('logout-form').submit();
     },
     closeDropdownOnClickOutside(event) {
       // Check if the clicked element is inside the dropdown
