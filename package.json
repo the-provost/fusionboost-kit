@@ -25,7 +25,7 @@
         "es6-promise": "^4.2.8",
         "frappe-charts": "^1.6.0",
         "frappe-datatable": "^1.15.3",
-        "jquery": "^3.6.0",
+        "jquery": "^3.7.1",
         "pinia": "^2.1.7",
         "sass-loader": "^11.1.1",
         "vform": "^1.0.1",
