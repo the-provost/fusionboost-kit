@@ -13,7 +13,7 @@
                         <b>OAuth Clients</b>
                     </span>
 
-                    <a class="btn btn-primary action-link" tabindex="-1" @click="showCreateClientForm">
+                    <a class="btn btn-primary action-link" tabindex="-1" data-bs-toggle="modal" data-bs-target="#modal-create-client">
                         Create New Client App
                     </a>
                 </div>
@@ -81,7 +81,7 @@
                             Create Client
                         </h4>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
 
                     <div class="modal-body">
@@ -147,7 +147,7 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer border-none shadow-none border-top-0">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                         <button type="button" class="btn btn-primary" @click="store">
                             Create App
@@ -166,7 +166,7 @@
                             Edit Client App
                         </h4>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
 
                     <div class="modal-body">
@@ -180,7 +180,7 @@
                                 </li>
                             </ul>
                         </div>
-
+                        
                         <!-- Edit Client Form -->
                         <form role="form">
                             <!-- Name -->
@@ -215,7 +215,7 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer border-none shadow-none border-top-0">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                         <button type="button" class="btn btn-primary" @click="update">
                             Save Changes
@@ -234,7 +234,7 @@
                             Client Secret
                         </h4>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
 
                     <div class="modal-body">
@@ -248,7 +248,7 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -296,12 +296,12 @@
              */
             prepareComponent() {
                 this.getClients();
-                $('#modal-create-client').on('shown.bs.modal', () => {
-                    $('#create-client-name').focus();
-                });
-                $('#modal-edit-client').on('shown.bs.modal', () => {
-                    $('#edit-client-name').focus();
-                });
+                // $('#modal-create-client').on('shown.bs.modal', () => {
+                //     $('#create-client-name').focus();
+                // });
+                // $('#modal-edit-client').on('shown.bs.modal', () => {
+                //     $('#edit-client-name').focus();
+                // });
             },
             /**
              * Get all of the OAuth clients for the user.
@@ -316,7 +316,7 @@
              * Show the form for creating new clients.
              */
             showCreateClientForm() {
-                $('#modal-create-client').modal('show');
+                $('#modal-create-client').attr('data-bs-target', '#modal-create-client').modal('show');
             },
             /**
              * Create a new OAuth client for the user.
@@ -336,7 +336,8 @@
                 this.editForm.id = client.id;
                 this.editForm.name = client.name;
                 this.editForm.redirect = client.redirect;
-                $('#modal-edit-client').modal('show');
+                var myModal = new bootstrap.Modal(document.getElementById('modal-edit-client'));
+                myModal.show();
             },
             /**
              * Update the client being edited.
@@ -361,6 +362,8 @@
                         form.redirect = '';
                         form.errors = [];
                         $(modal).modal('hide');
+                        var myModal = new bootstrap.Modal(document.getElementById(modal));
+                myModal.hide();
                         if (response.data.plainSecret) {
                             this.showClientSecret(response.data.plainSecret);
                         }
@@ -378,7 +381,8 @@
              */
             showClientSecret(clientSecret) {
                 this.clientSecret = clientSecret;
-                $('#modal-client-secret').modal('show');
+    var myModal = new bootstrap.Modal(document.getElementById('modal-client-secret'));
+                myModal.show();
             },
             /**
              * Destroy the given client.

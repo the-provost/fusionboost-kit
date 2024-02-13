@@ -12,10 +12,10 @@ import Popper from 'popper.js';
 window.Popper = Popper;
 
 // Import Bootstrap styles
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/scss/bootstrap.scss';
 
 // Import Bootstrap JS components
-import "bootstrap/dist/js/bootstrap.js";
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 // Import AdminLTE styles and scripts
 import 'admin-lte';
@@ -23,6 +23,12 @@ import 'admin-lte';
 // Import jQuery and attach it to the window object
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
+window.bootstrap = bootstrap;
+
+// $(document).ready(function() {
+//     console.log('jQuery is working!');
+//   });
+
 
 // Environment variables for Pusher (if needed)
 const pusherKey = import.meta.env.VITE_PUSHER_APP_KEY;

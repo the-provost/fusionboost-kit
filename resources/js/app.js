@@ -5,8 +5,9 @@ import { createApp } from 'vue';
 import router from './router.js'; // Make sure you have your router defined in router.js
 
 // Import global styles and configurations
-import './bootstrap.js';
+import '../js/bootstrap.js';
 import '../scss/app.scss'
+
 
 // Import your Vue components
 import AppComponent from './components/App.vue';
@@ -22,6 +23,7 @@ import axiosPlugin from './axios';
 
 const app = createApp(AppComponent).provide('darkMode', provideDarkMode);
 
+
 // Register global components
 app.component("v-select", vSelect); // Register vSelect component globally
 app.component(HasError.name, HasError); // Register HasError component globally
@@ -31,6 +33,16 @@ import NavbarComponent from './components/ui/NavbarComponent.vue';
 import SidebarComponent from './components/ui/SidebarComponent.vue';
 import FooterComponent from './components/ui/FooterComponent.vue';
 import ControlSidebarComponent from './components/ui/ControlSidebarComponent.vue';
+//Import Passport Components
+import PassportClients from './components/passport/Clients.vue';
+import PassportAuthorizedClients from './components/passport/AuthorizedClients.vue';
+import PassportPersonalAccessTokens from './components/passport/PersonalAccessTokens.vue';
+
+
+// Register global components
+app.component("passport-clients", PassportClients); // Register NavbarComponent globally
+app.component("passport-authorized-clients", PassportAuthorizedClients); // Register SidebarComponent globally
+app.component("passport-personal-access-tokens", PassportPersonalAccessTokens); // Register FooterComponent globally
 
 // Register global components
 app.component("navbar-component", NavbarComponent); // Register NavbarComponent globally
@@ -45,6 +57,7 @@ app.use(axiosPlugin);
 
 // Use Vue Router if you're using it
 app.use(router);
+
 
 // Use vform if you're using it
 app.config.globalProperties.$Form = Form; // Make vform accessible globally

@@ -64,7 +64,7 @@
                             Create Token
                         </h4>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
 
                     <div class="modal-body">
@@ -78,7 +78,7 @@
                                 </li>
                             </ul>
                         </div>
-
+                        
                         <!-- Create Token Form -->
                         <form role="form" @submit.prevent="store">
                             <!-- Name -->
@@ -113,7 +113,7 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer border-none shadow-none border-top-0">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                         <button type="button" class="btn btn-primary" @click="store">
                             Create
@@ -132,7 +132,7 @@
                             Personal Access Token
                         </h4>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
 
                     <div class="modal-body">
@@ -146,7 +146,7 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer border-none shadow-none border-top-0">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -190,9 +190,9 @@
             prepareComponent() {
                 this.getTokens();
                 this.getScopes();
-                $('#modal-create-token').on('shown.bs.modal', () => {
-                    $('#create-token-name').focus();
-                });
+                // $('#modal-create-token').on('shown.bs.modal', () => {
+                //     $('#create-token-name').focus();
+                // });
             },
             /**
              * Get all of the personal access tokens for the user.
@@ -216,7 +216,8 @@
              * Show the form for creating new tokens.
              */
             showCreateTokenForm() {
-                $('#modal-create-token').modal('show');
+                var myModal = new bootstrap.Modal(document.getElementById('modal-create-token'));
+                myModal.show();
             },
             /**
              * Create a new personal access token.
@@ -260,9 +261,11 @@
              * Show the given access token to the user.
              */
             showAccessToken(accessToken) {
-                $('#modal-create-token').modal('hide');
+                var createModal = new bootstrap.Modal(document.getElementById('modal-create-token'));
+                createModal.hide();
                 this.accessToken = accessToken;
-                $('#modal-access-token').modal('show');
+                var accessModal = new bootstrap.Modal(document.getElementById('modal-access-token'));
+                accessModal.show();
             },
             /**
              * Revoke the given token.

@@ -15,7 +15,7 @@
   export default {
   setup() {
     // Local ref for userAvatar and userName
-    const footerImagePath = ref("images/AdminLTELogo.png");
+    const footerImagePath = "images/AdminLTELogo.png";
     
     return {
       footerImagePath

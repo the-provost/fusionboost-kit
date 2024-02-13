@@ -23,6 +23,6 @@
 <!-- /.content-wrapper -->
 </template>
 <script setup>
-const loaderImagePath = '/images/AdminLTELogo.png';
+const loaderImagePath = '../../public/images/AdminLTELogo.png';
 </script>
 <style lang="scss" scoped></style>
