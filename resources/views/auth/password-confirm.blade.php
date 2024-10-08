@@ -1,4 +1,4 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
 @section('content')
 <br>
@@ -26,7 +26,7 @@
                         <img src="{{ asset('images/logo/logo_only_small.png') }}" alt="logo" class="logo">
                         &nbsp;
                         <!-- <img src="{{ asset('images/logo/textlogo_full.png') }}" alt="logo" class="logo"> -->
-                        <h3>Nordis</h3>
+                        <!-- <h3>Nordis</h3>
                         </div>
                         <p class="login-card-description">{{ __('Please confirm your password before continuing.') }}</p>
                         <form method="POST" action="{{ route('user/confirm-password') }}">
@@ -53,4 +53,4 @@
                 </div>
             </div>
         </div>
-@endsection
+@endsection  -->

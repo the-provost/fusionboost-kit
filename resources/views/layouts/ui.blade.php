@@ -14,6 +14,8 @@
   
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   
   <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
   @vite(['resources/js/app.js'])

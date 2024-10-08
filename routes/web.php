@@ -17,14 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/home', function () {
-//     dd(\Illuminate\Support\Facades\Auth::user());
-// });
+// // Catch-all route for Vue.js
+// Route::get('/{vue_capture?}', function () {
+//     return view('home'); // Home view loads your Vue app
+// })->where('vue_capture', '[\/\w\.-]*');
 
-Route::get('/{vue_capture?}', function () {
-    return view('home');
-})->where('vue_capture', '[\/\w\.-]*');
-
-
+// Terms routes for web
 Route::get('/terms', 'App\Http\Controllers\API\TermController@index')->name('terms');
 Route::get('/phoneTerms', 'App\Http\Controllers\API\TermController@getLatestTerms')->name('phoneTerms');

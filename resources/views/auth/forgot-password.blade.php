@@ -1,7 +1,7 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
-@section('content')
-<br>
+@section('content') -->
+<!-- <br>
 <div class="container pt-500">
     <br>
         <div class="card login-card pt-100">
@@ -25,7 +25,7 @@
                         <img src="{{ asset('images/logo/logo_only_small.png') }}" alt="logo" class="logo">
                         &nbsp;
                         <!-- <img src="{{ asset('images/logo/textlogo_full.png') }}" alt="logo" class="logo"> -->
-                        <h3>Nordis</h3>
+                        <!-- <h3>Nordis</h3>
                         </div>
                         <p class="login-card-description">Reset Password</p>
                         @if(session('status'))
@@ -55,4 +55,4 @@
                 </div>
             </div>
         </div>
-@endsection
+@endsection -->
