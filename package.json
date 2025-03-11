@@ -3,10 +3,17 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build && npm run copy-webfonts",
+        "copy-webfonts": "mkdir -p public/build/assets/webfonts && cp -r node_modules/@fortawesome/fontawesome-free/webfonts/* public/build/assets/webfonts/",
+        "build:clean": "rm -rf public/build && rm -rf node_modules/.vite",
+        "build:debug": "npm run build:clean && npm install && npm run build --trace",
+        "preview": "vite preview",
+        "prepare-manifest": "vite build && mkdir -p public/build && cp public/build/.vite/manifest.json public/build/manifest.json"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^6.7.2",
         "axios": "^1.6.7",
+        "husky": "^9.1.7",
         "laravel-vite-plugin": "^1.0.1",
         "lodash": "^4.17.21",
         "postcss": "^8.1.14",
@@ -15,25 +22,37 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^6.5.1",
         "@ibm/plex": "^5.2.1",
-        "@splidejs/vue-splide": "^0.3.5",
+        "@popperjs/core": "^2.11.8",
+        "@splidejs/vue-splide": "^0.6.12",
         "@vitejs/plugin-vue": "^5.0.3",
+        "@vuelidate/core": "^2.0.3",
+        "@vuelidate/validators": "^2.0.4",
         "admin-lte": "^3.1.0",
         "bootstrap": "^5.3.2",
         "chart.js": "^4.4.1",
+        "date-fns": "^4.1.0",
         "es6-promise": "^4.2.8",
         "frappe-charts": "^1.6.0",
         "frappe-datatable": "^1.15.3",
         "jquery": "^3.7.1",
+        "moment": "^2.30.1",
+        "particles.js": "^2.0.0",
+        "pest": "^0.0.20150905",
         "pinia": "^2.1.7",
+        "popper.js": "^1.16.1",
         "sass-loader": "^11.1.1",
+        "sweetalert2": "^11.6.13",
+        "tilt.js": "^1.2.1",
         "vform": "^1.0.1",
         "vue": "^3.4.15",
         "vue-loader": "^17.4.2",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^4.2.5",
         "vue-select": "^4.0.0-beta.6",
-        "vue-template-compiler": "^2.6.12"
+        "vue-select-3": "^1.0.1",
+        "vue-template-compiler": "^0.1.0",
+        "vue-toastification": "^2.0.0-rc.5",
+        "vuedraggable": "^4.1.0"
     }
 }

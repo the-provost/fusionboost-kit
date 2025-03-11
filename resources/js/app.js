@@ -1,72 +1,87 @@
-// Import Vue 3 core library
+// Import Vue core and plugins
 import { createApp } from 'vue';
-
-// Import router instance
-import router from './router.js'; // Make sure you have your router defined in router.js
-
-// Import global styles and configurations
-import '../js/bootstrap.js';
-import '../scss/app.scss'
-
-
-// Import your Vue components
-import AppComponent from './components/App.vue';
-import { provideDarkMode } from './darkModePlugin';
-
-import { Form, HasError, AlertError } from 'vform'; // Assuming you're still using these components
-import vSelect from "vue-select";
-import swal from 'sweetalert2'; // Import SweetAlert2 for notifications
-import moment from 'moment'; // Import Moment.js for date formatting
-import 'vue-select/dist/vue-select.css';
+import router from './router.js';
 import axiosPlugin from './axios';
 
+// Import base styles and configurations
+import '../js/bootstrap.js';
+import '../scss/app.scss';
 
-const app = createApp(AppComponent).provide('darkMode', provideDarkMode);
-
-
-// Register global components
-app.component("v-select", vSelect); // Register vSelect component globally
-app.component(HasError.name, HasError); // Register HasError component globally
-app.component(AlertError.name, AlertError); // Register AlertError component globally
-//common ui components
+// Import components
+import AppComponent from './components/App.vue';
+import BaseModalComponent from './components/ui/BaseModalComponent.vue';
 import NavbarComponent from './components/ui/NavbarComponent.vue';
 import SidebarComponent from './components/ui/SidebarComponent.vue';
 import FooterComponent from './components/ui/FooterComponent.vue';
 import ControlSidebarComponent from './components/ui/ControlSidebarComponent.vue';
-//Import Passport Components
+
+// Import passport components
 import PassportClients from './components/passport/Clients.vue';
 import PassportAuthorizedClients from './components/passport/AuthorizedClients.vue';
 import PassportPersonalAccessTokens from './components/passport/PersonalAccessTokens.vue';
 
+// Import third-party libraries and styles
+import { Form, HasError, AlertError } from 'vform';
+import vSelect from "vue-select";
+import 'vue-select/dist/vue-select.css';
+import swal from 'sweetalert2';
+import moment from 'moment';
 
-// Register global components
-app.component("passport-clients", PassportClients); // Register NavbarComponent globally
-app.component("passport-authorized-clients", PassportAuthorizedClients); // Register SidebarComponent globally
-app.component("passport-personal-access-tokens", PassportPersonalAccessTokens); // Register FooterComponent globally
+// Import custom plugins and utilities
+import { initializeDarkMode, provideDarkMode } from './darkModePlugin';
+import { initParticles } from './particles.js';
 
-// Register global components
-app.component("navbar-component", NavbarComponent); // Register NavbarComponent globally
-app.component("sidebar-component", SidebarComponent); // Register SidebarComponent globally
-app.component("footer-component", FooterComponent); // Register FooterComponent globally
-app.component("control-sidebar-component", ControlSidebarComponent); // Register ControlSidebarComponent globally
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 
+// Initialize dark mode
+initializeDarkMode();
 
-// Use the Axios plugin
+// Initialize particles on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+    initParticles();
+});
+
+// Create Vue application instance
+const app = createApp(AppComponent);
+
+// Provide dark mode context
+app.provide('darkMode', provideDarkMode);
+
+// Register common UI components
+app.component("v-select", vSelect);
+app.component(HasError.name, HasError);
+app.component(AlertError.name, AlertError);
+app.component("navbar-component", NavbarComponent);
+app.component("sidebar-component", SidebarComponent);
+app.component("footer-component", FooterComponent);
+app.component("control-sidebar-component", ControlSidebarComponent);
+app.component('base-modal-component', BaseModalComponent);
+
+// Register Passport components
+app.component("passport-clients", PassportClients);
+app.component("passport-authorized-clients", PassportAuthorizedClients);
+app.component("passport-personal-access-tokens", PassportPersonalAccessTokens);
+
+// Use plugins
+app.use(router);
 app.use(axiosPlugin);
 
+app.use(Toast, {
+    position: 'top-right',
+    timeout: 3000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+  })
 
-// Use Vue Router if you're using it
-app.use(router);
-
-
-// Use vform if you're using it
-app.config.globalProperties.$Form = Form; // Make vform accessible globally
-
-// Register swal globally
+// Register global properties
+app.config.globalProperties.$Form = Form;
 app.config.globalProperties.$swal = swal;
-
-// Register moment globally
 app.config.globalProperties.$moment = moment;
 
-// Mount the app
+// Mount the application
 app.mount('#app');
+
+// Export the app instance if needed
+export default app;

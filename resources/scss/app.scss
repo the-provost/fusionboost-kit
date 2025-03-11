@@ -1,28 +1,151 @@
-// Fonts
+// resources/sass/app.scss
+
+// Google Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import 'bootstrap/scss/bootstrap.scss';
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Admin-lte
+// Font Awesome
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/regular";
+@import "@fortawesome/fontawesome-free/scss/brands";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+$fa-font-path: "/build/assets/webfonts";
+
+// Main imports
+@import "vue-select/dist/vue-select.css";
 @import 'admin-lte/dist/css/adminlte.css';
 
-// $fa-font-path:        "../webfonts";
-$fa-font-path:    "~@fortawesome/fontawesome-free/webfonts";
 
-//font-awesome
-@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+// Global styles
+:root {
+    // Brand Colors
+    --maroon-dark: #800000;      // Dark maroon
+    --maroon-light: #A52A2A;     // Lighter maroon
+    --scarlet: #FF2400;          // Bright scarlet
+    --scarlet-dark: #CC1E00;     // Darker scarlet
+    --black-pure: #000000;       // Pure black
+    --black-soft: #1A1A1A;       // Soft black
 
+    // Light Mode
+    --primary-color-light: var(--maroon-dark);
+    --secondary-color-light: var(--scarlet);
+    --text-color-light: #2C3E50;
+    --bg-color-light: #F8F9FA;
+    --card-bg-light: #FFFFFF;
+    --border-color-light: #E9ECEF;
+
+    // Dark Mode
+    --primary-color-dark: var(--scarlet);
+    --secondary-color-dark: var(--maroon-light);
+    --text-color-dark: #E0E0E0;
+    --bg-color-dark: var(--black-soft);
+    --card-bg-dark: #2C2C2C;
+    --border-color-dark: #404040;
+
+    // Status Colors
+    --success-color: #2E7D32;    // Green
+    --danger-color: var(--scarlet-dark);
+    --warning-color: #f54e00;    // Orange
+    --info-color: #0288D1;       // Blue
+
+    // Accent Colors
+    --accent-1: var(--maroon-light);
+    --accent-2: var(--scarlet);
+    --accent-3: #4A4A4A;
+  }
+
+  .wrapper {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+
+    &.dark-mode {
+      background-color: var(--dark-color);
+      color: var(--light-color);
+    }
+  }
+
+  // Preloader
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.9);
+
+    .dark-mode & {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+  }
+
+  // Route transitions
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  .text-warning{
+    color: var(--warning-color) !important;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  // Loading state
+  .loading {
+    cursor: wait;
+
+    * {
+      pointer-events: none;
+    }
+  }
+
+  // Progress bar customization
+  #nprogress {
+    .bar {
+      background: var(--primary-color) !important;
+    }
+
+    .peg {
+      box-shadow: 0 0 10px var(--primary-color), 0 0 5px var(--primary-color) !important;
+    }
+
+    .spinner-icon {
+      border-top-color: var(--primary-color) !important;
+      border-left-color: var(--primary-color) !important;
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .wrapper {
+      padding-top: 3.5rem;
+    }
+  }
+
+
+// Global Styles
 body {
-    background: #c9d6ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #c9d6ff, #e2e2e2); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #c9d6ff, #e2e2e2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: var(--gradient-start);
+    background: -webkit-linear-gradient(to top, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(to top, var(--gradient-start), var(--gradient-end));
     min-height: 100vh;
 }
 
+// Login Styles
 .brand-wrapper {
     margin-bottom: 19px;
 
@@ -37,7 +160,6 @@ body {
     box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
     overflow: hidden;
 
-
     &-img {
         border-radius: 0;
         position: absolute;
@@ -45,6 +167,7 @@ body {
         height: 100%;
         object-fit: cover;
     }
+
     .card-body {
         padding: 85px 60px 60px;
 
@@ -80,7 +203,7 @@ body {
 
     .login-btn {
         padding: 13px 20px 12px;
-        background-color: #000;
+        background-color: #B80000;
         border-radius: 4px;
         font-size: 17px;
         font-weight: bold;
@@ -89,8 +212,8 @@ body {
         margin-bottom: 24px;
 
         &:hover {
-            border: 1px solid #000;
-            background-color: transparent;
+            border: none;
+            background-color:  #e81010;
             color: #000;
         }
     }
@@ -118,3 +241,450 @@ body {
         }
     }
 }
+// resources/sass/_login.scss
+
+.logo-wrapper {
+    text-align: center;
+
+    .logo-img {
+        max-width: 180px;  // Adjust this value based on your logo size
+        height: auto;
+    }
+}
+
+// Variables
+$red-primary: #b80000;
+$red-glow: #8B000033;
+$dark-bg: #0a0a0a;
+$darker-bg: #0a0a0a;
+
+// Split Layout
+.split-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+.split-left {
+    width: 50%;
+    background: $dark-bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.split-right {
+    width: 50%;
+    background: $dark-bg;
+    position: relative;
+    overflow: hidden;
+}
+
+// Particles Container
+#particles-js {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+// Login Form Styling
+.login-wrapper {
+    width: 400px;
+    max-width: 100%;
+    padding: 2rem;
+}
+
+.login-header {
+    margin-bottom: 2rem;
+
+    .glowing-text {
+        color: $red-primary;
+        text-shadow: 0 0 10px $red-glow,
+                     0 0 20px $red-glow;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.login-form {
+    .form-control {
+        background-color: rgba(98, 95, 95, 1);
+        border: none;
+        color: #fff;
+
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: $red-primary;
+            box-shadow: 0 0 0 0.25rem rgba($red-primary, 0.25);
+        }
+    }
+
+    .form-floating {
+        > label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        > .form-control:focus ~ label,
+        > .form-control:not(:placeholder-shown) ~ label {
+            color: rgba(83, 83, 83, 0.8);
+        }
+    }
+}
+
+.btn-red {
+    background: $red-primary;
+    border: none;
+    color: #fff;
+    padding: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: lighten($red-primary, 10%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba($red-primary, 0.4);
+    }
+}
+
+// Form Controls
+.form-check-input {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+
+    &:checked {
+        background-color: $red-primary;
+        border-color: $red-primary;
+    }
+}
+
+// Text Colors
+.text-red {
+    color: $red-primary !important;
+}
+
+
+
+/* Chrome, Safari autofill background removal */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgba(98, 95, 95, 1) inset !important;
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Firefox autofill background removal */
+input:autofill,
+input:autofill:hover,
+input:autofill:focus,
+input:autofill:active {
+    box-shadow: 0 0 0 30px rgba(98, 95, 95, 1) inset !important;
+    -webkit-text-fill-color: #fff !important;
+    filter: none;
+}
+
+.form-control:-webkit-autofill ~ label {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Additional form control dark mode overrides */
+.form-control:autofill,
+.form-control:-webkit-autofill {
+    background-color: rgba(98, 95, 95, 1) !important;
+    color: #fff !important;
+}
+
+.dark-mode .form-control:-webkit-autofill ~ label {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.text-muted {
+    color: rgba(63, 62, 62, 0.977) !important;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .split-container {
+        flex-direction: column;
+    }
+
+    .split-left,
+    .split-right {
+        width: 100%;
+    }
+
+    .split-left {
+        height: 100%;
+    }
+
+    .split-right {
+        display: none;
+    }
+
+    .login-wrapper {
+        padding: 1rem;
+    }
+}
+
+// Empty Page styling
+.content-wrapper {
+    min-height: calc(100vh - 114px);
+  }
+
+  .card {
+    margin-bottom: 1rem;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+  }
+
+  .btn-group {
+    box-shadow: none;
+  }
+
+  .btn-primary {
+    color: white !important;
+  }
+
+  /* Dark mode styles */
+  :deep(.dark-mode) .content-wrapper {
+    background-color: #343a40;
+    color: #fff;
+  }
+
+  :deep(.dark-mode) .card {
+    background-color: #454d55;
+    border: none;
+  }
+
+  :deep(.dark-mode) .card-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+  }
+
+  :deep(.dark-mode) .card-title {
+    color: #fff;
+  }
+
+  :deep(.dark-mode) .breadcrumb {
+    background-color: transparent;
+  }
+
+  :deep(.dark-mode) .breadcrumb-item {
+    color: #adb5bd;
+  }
+
+  :deep(.dark-mode) .breadcrumb-item.active {
+    color: #fff;
+  }
+
+  :deep(.dark-mode) .breadcrumb-item a {
+    color: #3f80ea;
+  }
+
+
+
+  //Footer component
+  .main-footer {
+    background-color: var(--footer-bg, #fff);
+    color: var(--footer-text, #6c757d);
+    padding: 0.5rem 1rem;
+  }
+
+  .main-footer a {
+    color: var(--footer-link, #007bff);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .main-footer a:hover {
+    color: var(--footer-link-hover, #0056b3);
+    text-decoration: underline;
+  }
+
+  .brand-image {
+    transition: opacity 0.2s ease;
+  }
+
+  .brand-image:hover {
+    opacity: 0.8 !important;
+  }
+
+  /* Dark mode styles */
+  :deep(.dark-mode) .main-footer {
+    background-color: #343a40;
+    color: #fff;
+    border-top: 1px solid #4b545c;
+  }
+
+  :deep(.dark-mode) .main-footer a {
+    color: #fff;
+  }
+
+  :deep(.dark-mode) .main-footer a:hover {
+    color: #e9ecef;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .brand-image {
+      max-height: 25px !important;
+    }
+
+    .main-footer {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  // Project metrics badges in board view
+  .project-metrics {
+    .badge-light {
+      background-color: rgba(73, 80, 87, 0.15);  // Semi-transparent dark background
+      color: #495057;                            // Dark text for light mode
+      font-weight: 500;
+
+      .dark-mode & {
+        background-color: rgba(224, 224, 224, 0.15);  // Semi-transparent light background
+        color: #e0e0e0;                               // Light text for dark mode
+      }
+    }
+  }
+
+  // Status badges
+  .status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+    color: #ffffff !important;  // Ensure white text on all status badges
+  }
+
+  // Quick filter badges when inactive
+  .quick-filters {
+    .btn-light {
+      background-color: #e9ecef;
+      color: #495057;
+      border-color: #dce0e5;
+
+      &:hover {
+        background-color: #dce0e5;
+        color: #212529;
+      }
+
+      .dark-mode & {
+        background-color: #4a4a4a;
+        color: #e0e0e0;
+        border-color: #595959;
+
+        &:hover {
+          background-color: #595959;
+          color: #ffffff;
+        }
+      }
+    }
+}
+
+/* Badge Styles */
+.badge {
+    padding: 0.5em 0.75em;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 1;
+    border-radius: 0.375rem;
+  }
+
+  .badge-light {
+    background-color: #f3f4f6;  /* Light gray background */
+    color: #1f2937 !important;  /* Dark text color */
+    border: 1px solid #e5e7eb;  /* Slight border for definition */
+  }
+
+  /* Dark mode styles */
+  :deep(.dark-mode) .badge-light {
+    background-color: #374151;  /* Darker background for dark mode */
+    color: #f3f4f6 !important;  /* Light text for dark mode */
+    border-color: #4b5563;
+  }
+
+  /* Adjusted spacing */
+  .badge.ml-2 {
+    margin-left: 0.5rem;
+  }
+
+  /* For project counts or numbers */
+  .badge-light.count {
+    font-variant-numeric: tabular-nums;
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  /* Hover effect for interactive badges */
+  .badge-light[role="button"] {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .badge-light[role="button"]:hover {
+    background-color: #e5e7eb;
+    border-color: #d1d5db;
+  }
+
+  /* For status badges */
+  .badge-light.status {
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* Status Badge Styles */
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .status-badge.active {
+    background-color: #f3f4f6;  /* Light gray background */
+    color: #1f2937 !important;  /* Dark text */
+    border: 1px solid #e5e7eb;
+  }
+
+  /* Dark mode styles */
+  :deep(.dark-mode) .status-badge.active {
+    background-color: #374151;
+    color: #f3f4f6 !important;
+    border-color: #4b5563;
+  }
+
+  /* Status badge variations */
+  .status-badge.inactive {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    border: 1px solid #e5e7eb;
+  }
+
+  :deep(.dark-mode) .status-badge.inactive {
+    background-color: #374151;
+    color: #f3f4f6;
+    border-color: #4b5563;
+  }
+
+  /* Dark mode override */
+  :deep(.dark-mode) .text-muted {
+    color: #9CA3AF !important;  /* Lighter gray for dark mode */
+  }
+
+  /* For specific cases like project meta */
+  .project-meta .text-muted {
+    color: #6B7280 !important;
+  }
+
+  :deep(.dark-mode) .project-meta .text-muted {
+    color: #9CA3AF !important;
+  }
