@@ -4,12 +4,13 @@
       <!-- Preloader -->
       <div
         class="preloader flex-column justify-content-center align-items-center">
-        <img
+        <a>Logo Image Here</a>
+        <!-- <img
           class="animation__shake"
           :src="logoImage"
           alt="App Logo"
           height="60"
-          width="60">
+          width="60"> -->
       </div>
 
        <!-- <vue-progress-bar></vue-progress-bar> -->
@@ -35,7 +36,7 @@
   import { useRouter } from 'vue-router';
   import { useToast } from 'vue-toastification';
   import { useDarkMode } from '../darkModePlugin';
-  import logoImage from '../assets/greydesk-logo.png';
+//   import logoImage from '../assets/greydesk-logo.png';
 
   // Components are imported and registered in main.js
   // import AsideComponent from './components/Aside.vue';

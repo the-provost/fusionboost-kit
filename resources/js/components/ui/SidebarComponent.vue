@@ -4,8 +4,9 @@
       <router-link
         to="/home"
         class="brand-link text-black navbar-white navbar-light logo shadow-none border-bottom-0 text-sm d-flex align-items-center"
-      >
-        <img
+      > <a>Logo</a>
+      <a>Wordmark</a>
+        <!-- <img
           :src="logoImage"
           alt="Logo"
           class="brand-image"
@@ -16,7 +17,7 @@
           alt="Logo"
           class="brand-text"
           :style="brandTextStyle"
-        >
+        > -->
       </router-link>
 
       <div class="sidebar">
@@ -60,9 +61,9 @@
   import { computed, ref, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
   import { useDarkMode } from '../../darkModePlugin';
-  import logoImage from '../../assets/greydesk-logo.png';
-  import wordmarkBlack from '../../assets/greydesk-wordmark-black.png';
-  import wordmarkWhite from '../../assets/greydesk-wordmark-black.png'; // Fixed the import
+//   import logoImage from '../../assets/-logo.png';
+//   import wordmarkBlack from '../../assets/-wordmark-black.png';
+//   import wordmarkWhite from '../../assets/-wordmark-white.png'; // Fixed the import
   import userDefaultAvatar from '../../assets/avatars/svg/001-man.svg';
   import { getUserMenu } from '../../config/menu';
   import SidebarMenuItem from './SidebarMenuItem.vue';
@@ -107,9 +108,9 @@
   // Menu and theme computeds
   const menuItems = computed(() => getUserMenu(user.value.user_type));
 
-  const currentWordmark = computed(() =>
-    darkMode.value ? wordmarkWhite : wordmarkBlack
-  );
+//   const currentWordmark = computed(() =>
+//     darkMode.value ? wordmarkWhite : wordmarkBlack
+//   );
 
   const sidebarClasses = computed(() => ({
     'main-sidebar': true,

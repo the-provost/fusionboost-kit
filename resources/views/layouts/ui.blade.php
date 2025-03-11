@@ -6,7 +6,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>PMO | Greydesk</title>
+  <title>AppName | Company Name or Tag Line</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Google Font: Source Sans Pro -->

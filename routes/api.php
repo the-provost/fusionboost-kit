@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\TermController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'app'], function () {
     Route::post('/login', 'App\Http\Controllers\APIUserController@login');
+    Route::post('/taiga-login', 'App\Http\Controllers\APIUserController@taigaLogin');
     Route::post('/register', 'App\Http\Controllers\APIUserController@register');
     Route::get('/logout', 'App\Http\Controllers\APIUserController@logout')->middleware('auth:api');
 });
@@ -28,12 +30,18 @@ Route::group(['prefix' => 'app'], function () {
 // Route::get('/verified','App\Http\Controllers\API\VerificationController@getStatus')->name('verification.check');
 
 
+Route::middleware('auth:api')->group(function () {
 
+});
+
+//Terms
+Route::get('/terms/getLatestTerms', 'App\Http\Controllers\API\TermController@getLatestTerms');
+Route::apiResource('terms', TermController::class);
+
+// User route (typically used to get the authenticated user's information)
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Terms
-Route::middleware('auth:api')->post('/addTerms', 'App\Http\Controllers\API\TermController@store')->name('addTerms');
-Route::post('/getLatestTerms', 'App\Http\Controllers\API\TermController@getLatestTerms')->name('getLatestTerms');
-Route::post('/showLatestTerms', 'App\Http\Controllers\API\TermController@showLatestTerms')->name('showLatestTerms');
+
+

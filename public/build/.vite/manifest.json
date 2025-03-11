@@ -1,0 +1,53 @@
+{
+  "_vendor-!~{003}~.js": {
+    "file": "assets/css/vendor-DMquKzSL.css",
+    "src": "_vendor-!~{003}~.js"
+  },
+  "_vendor-DuUAF3Sq.js": {
+    "file": "assets/js/vendor-DuUAF3Sq.js",
+    "name": "vendor",
+    "css": [
+      "assets/css/vendor-DMquKzSL.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/js/app-EHpTojq5.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor-DuUAF3Sq.js"
+    ],
+    "css": [
+      "assets/css/app-I4QjUPT-.css",
+      "assets/css/app-CBu3tktG.css"
+    ],
+    "assets": [
+      "assets/images/001-man-z5qpHzb2.svg",
+      "assets/images/greymorelogo-CBWSDB2Y.png",
+      "assets/images/kl-sm-wordmark-black-DRTCxPoF.png",
+      "assets/images/kl-sm-wordmark-white-BJ1cXWVC.png"
+    ]
+  },
+  "resources/js/assets/avatars/svg/001-man.svg": {
+    "file": "assets/images/001-man-z5qpHzb2.svg",
+    "src": "resources/js/assets/avatars/svg/001-man.svg"
+  },
+  "resources/js/assets/greymorelogo.png": {
+    "file": "assets/images/greymorelogo-CBWSDB2Y.png",
+    "src": "resources/js/assets/greymorelogo.png"
+  },
+  "resources/js/assets/kl-sm-wordmark-black.png": {
+    "file": "assets/images/kl-sm-wordmark-black-DRTCxPoF.png",
+    "src": "resources/js/assets/kl-sm-wordmark-black.png"
+  },
+  "resources/js/assets/kl-sm-wordmark-white.png": {
+    "file": "assets/images/kl-sm-wordmark-white-BJ1cXWVC.png",
+    "src": "resources/js/assets/kl-sm-wordmark-white.png"
+  },
+  "resources/scss/app.scss": {
+    "file": "assets/css/app-CBu3tktG.css",
+    "src": "resources/scss/app.scss",
+    "isEntry": true
+  }
+}

@@ -8,26 +8,34 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.3 || ^8.2",
+        "php": "^8.4 || ^8.3 || ^8.2",
         "doctrine/dbal": "^3.8",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/fortify": "^1.7",
         "laravel/framework": "^10.0",
         "laravel/passport": "^11.10",
+        "laravel/pulse": "^1.2",
+        "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.5",
         "orangehill/iseed": "^3.0",
-        "spatie/laravel-ignition": "^2.4"
+        "spatie/laravel-ignition": "^2.4",
+        "the-provost/laravel-summdb": "^1.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.31",
         "mockery/mockery": "^1.4.2",
-        "phpunit/phpunit": "^9.3.3"
+        "pestphp/pest": "^2.36",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "phpunit/phpunit": "^10.5"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {
@@ -43,7 +51,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "App\\": "app/"
         }
     },
     "minimum-stability": "dev",
@@ -51,13 +60,23 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "chmod -R 775 bootstrap\/cache"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-install-cmd": [
+            "chmod -R 775 public\/images",
+            "chmod -R 775 public\/js",
+            "chmod -R 775 public\/css",
+            "chmod -R 775 public",
+            "chmod -R 777 storage",
+            "chown www-data:www-data storage/oauth-*.key",
+            "chmod 644 storage\/oauth-*.key"
         ]
     }
 }
