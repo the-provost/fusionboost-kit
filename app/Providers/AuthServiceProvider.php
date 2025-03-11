@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        // Passport::loadKeysFrom(__DIR__.'/');
+
+        Passport::loadKeysFrom(base_path('storage'));
         // Passport::hashClientSecrets();
 
         // Gate::define('isGreyManager',function($user){
